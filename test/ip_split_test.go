@@ -19,7 +19,6 @@ func TestSplitIp(t *testing.T) {
 			continue
 		}
 
-
 		tmp_a := PadLeft(a[i], 3-len(a[i]), "0")
 		tmp_b := PadLeft(b[i], 3-len(b[i]), "0")
 
@@ -29,13 +28,13 @@ func TestSplitIp(t *testing.T) {
 		for j := int_a; j <= int_b; j++ {
 			switch i {
 			case 0:
-				ipArray = append(ipArray, fmt.Sprintf("%s.%s.%s.%s", string(j), a[i+1], a[i+2], a[i+3]))
+				ipArray = append(ipArray, fmt.Sprintf("%d.%s.%s.%s", j, a[i+1], a[i+2], a[i+3]))
 			case 1:
-				ipArray = append(ipArray, fmt.Sprintf("%s.%s.%s.%s", a[i-1], string(j), a[i+1], a[i+2]))
+				ipArray = append(ipArray, fmt.Sprintf("%s.%d.%s.%s", a[i-1], j, a[i+1], a[i+2]))
 			case 2:
-				ipArray = append(ipArray, fmt.Sprintf("%s.%s.%s.%s", a[i-2], a[i-1], string(j), a[i+1]))
+				ipArray = append(ipArray, fmt.Sprintf("%s.%s.%d.%s", a[i-2], a[i-1], j, a[i+1]))
 			case 3:
-				ipArray = append(ipArray, fmt.Sprintf("%s.%s.%s.%s", a[i-3], a[i-2], a[i-1], string(j)))
+				ipArray = append(ipArray, fmt.Sprintf("%s.%s.%s.%d", a[i-3], a[i-2], a[i-1], j))
 			}
 
 		}

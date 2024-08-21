@@ -1,10 +1,11 @@
 package test
 
 import (
-	"encoding/json"
 	"fmt"
-	"github.com/astaxie/beego/cache"
+	"github.com/Knetic/govaluate"
 	"github.com/sirupsen/logrus"
+	"regexp"
+	"strings"
 	"testing"
 	"time"
 )
@@ -12,32 +13,49 @@ import (
 var logger = logrus.New()
 
 type testStruct struct {
-	Id string `json:"id"`
+	Id   string `json:"id"`
 	Data string `json:"data"`
 }
 
 func TestCache(t *testing.T) {
 
-
-	fmt.Println(1<<15)
-
-	testA :=[]testStruct{{"1","4"},{"2","3"},{"3","2"},{"4","1"},{"abc","bcd"}}
-	data,err := json.Marshal(testA)
-	fmt.Println(string(data))
-
-	var testB []testStruct
-
-	err = json.Unmarshal(data,&testB)
-
-
-	localCache, err := cache.NewCache("memory", `{"interval":60}`)
+	start, _ := time.Parse(time.DateOnly, "2024-01-01")
+	end, _ := time.Parse(time.DateOnly, "2024-04-18")
+	var arr []string
+	for tmp := start; tmp.Before(end); tmp = tmp.AddDate(0, 0, 1) {
+		arr = append(arr, "'"+tmp.Format("20060102")+"'")
+	}
+	fmt.Println(strings.Join(arr, ","))
+	_, err := regexp.Compile(`/[/]`)
 	if err != nil {
-		logger.Errorf("创建本地缓存失败！：%s", err.Error())
+		t.Error(err)
 		return
 	}
-	key := "testCache"
-	if err = localCache.Put(key, 0, 24*time.Hour);err != nil{
-		logger.Errorf("本地缓存存入：key:%s-val:%s","1","2")
+
+	// 示例 map
+	var a interface{}
+	data := []interface{}{"1", "2", "3"}
+	a = []interface{}{"1", "2", "3"}
+
+	// 创建表达式
+	expression, err := govaluate.NewEvaluableExpression("('1','2','3') == data")
+	if err != nil {
+		panic(err)
 	}
+
+	parameters := map[string]interface{}{
+		"data": data,
+		"a":    a,
+	}
+
+	// 评估表达式
+	result, err := expression.Evaluate(parameters)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Expression result:", result)
+
+	fmt.Println(1 << 15)
 
 }

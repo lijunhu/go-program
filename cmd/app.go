@@ -3,9 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/caarlos0/env/v10"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"github.com/spf13/viper"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -16,11 +18,17 @@ import (
 
 var server = gin.New()
 
-
 var validate *validator.Validate
 
+type Config struct {
+	Test string `env:"test" envDefault:"123123"`
+}
 
 func main() {
+	c := &Config{}
+	env.Parse(c)
+	viper.AutomaticEnv()
+	viper.GetString("")
 
 	go Run()
 
@@ -50,7 +58,7 @@ func Run() {
 	server.Any("/appproxy/v2", func(context *gin.Context) {
 
 		args := context.Request.URL.Query()
-		argBytes,_ := json.Marshal(args)
+		argBytes, _ := json.Marshal(args)
 		headers := context.Request.Header
 
 		headerBytes, _ := json.Marshal(headers)
@@ -62,7 +70,7 @@ func Run() {
 		cookies := context.Request.Cookies()
 		cookiesByte, _ := json.Marshal(cookies)
 		fmt.Printf("请求url:%s,\t请求方法：%s,\t请求headers：%s,请求args:%s\t请求cookie：%s,\t请求：params:%s,\t请求body：%s \n",
-			context.Request.URL.Path, context.Request.Method, string(headerBytes),string(argBytes), string(cookiesByte), string(paramsByte), string(body))
+			context.Request.URL.Path, context.Request.Method, string(headerBytes), string(argBytes), string(cookiesByte), string(paramsByte), string(body))
 		resp := struct {
 			Code   int64
 			Msg    string
@@ -79,5 +87,3 @@ func Run() {
 		os.Exit(0x1)
 	}
 }
-
-

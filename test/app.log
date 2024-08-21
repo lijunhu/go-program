@@ -1,0 +1,12 @@
+{"event":"start","level":"info","msg":"Application starting","time":"2024-07-25T15:49:38+08:00","traceID":"ae24bf17ca09e067ddf8c4719705bad9","type":"main"}
+{"event":"work","level":"info","msg":"Doing some work in exampleFunction","time":"2024-07-25T15:49:38+08:00","traceID":"ae24bf17ca09e067ddf8c4719705bad9","type":"exampleFunction"}
+{"event":"end","level":"info","msg":"Application ending","time":"2024-07-25T15:49:38+08:00","traceID":"ae24bf17ca09e067ddf8c4719705bad9","type":"main"}
+{"event":"start","level":"info","msg":"Application starting","time":"2024-07-25T16:19:11+08:00","traceID":"1950480917c11235bf2c0110f669a2db","type":"main"}
+{"event":"work","level":"info","msg":"Doing some work in exampleFunction","time":"2024-07-25T16:19:11+08:00","traceID":"1950480917c11235bf2c0110f669a2db","type":"exampleFunction"}
+{"event":"end","level":"info","msg":"Application ending","time":"2024-07-25T16:19:11+08:00","traceID":"1950480917c11235bf2c0110f669a2db","type":"main"}
+{"event":"start","level":"info","msg":"Application starting","time":"2024-07-25T17:20:55+08:00","traceID":"19c2e5f7c83bc6018ba147bb3867a001","type":"main"}
+{"event":"work","level":"info","msg":"Doing some work in exampleFunction","time":"2024-07-25T17:20:55+08:00","traceID":"19c2e5f7c83bc6018ba147bb3867a001","type":"exampleFunction"}
+{"event":"end","level":"info","msg":"Application ending","time":"2024-07-25T17:20:55+08:00","traceID":"19c2e5f7c83bc6018ba147bb3867a001","type":"main"}
+{"event":"start","level":"info","msg":"Application starting","time":"2024-07-25T17:23:32+08:00","traceID":"fa8a391aa9e9fd62a71814eb01d39507","type":"main"}
+{"event":"work","level":"info","msg":"Doing some work in exampleFunction","time":"2024-07-25T17:23:32+08:00","traceID":"fa8a391aa9e9fd62a71814eb01d39507","type":"exampleFunction"}
+{"event":"end","level":"info","msg":"Application ending","time":"2024-07-25T17:23:32+08:00","traceID":"fa8a391aa9e9fd62a71814eb01d39507","type":"main"}
