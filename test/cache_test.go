@@ -18,7 +18,6 @@ type testStruct struct {
 }
 
 func TestCache(t *testing.T) {
-
 	start, _ := time.Parse(time.DateOnly, "2024-01-01")
 	end, _ := time.Parse(time.DateOnly, "2024-04-18")
 	var arr []string

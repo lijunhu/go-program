@@ -95,6 +95,10 @@ func Test_RealtimeApk(t *testing.T) {
 				PkgName: "com.samsung.android.hmt.vrsystem",
 			}, {
 				PkgName: "com.sing.client",
+			}, {
+				PkgName: "com.aiba.app",
+			}, {
+				PkgName: "surugaya_cheki",
 			},
 		},
 	}
@@ -236,7 +240,7 @@ func Test_RealtimeApkResult(t *testing.T) {
 	tpl := "mayi-app-data"
 
 	apks := TaskReq{
-		TaskId: "2d64e440-d90e-4107-9c8c-226d222bd8cc",
+		TaskId: "1a532145-c6a9-405b-adef-ea84b45d6b71",
 	}
 	body, err := json.Marshal(apks)
 	if err != nil {

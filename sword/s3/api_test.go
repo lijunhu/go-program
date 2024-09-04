@@ -1,8 +1,8 @@
 package s3
 
 import (
-	"context"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -26,8 +26,8 @@ var bucket *Bucket = &Bucket{
 
 func BenchmarkPutObject(b *testing.B) {
 
-	 lock  := new (sync.Mutex)
-	 wg := new(sync.WaitGroup)
+	lock := new(sync.Mutex)
+	wg := new(sync.WaitGroup)
 
 	go func(args interface{}) {
 
@@ -35,14 +35,14 @@ func BenchmarkPutObject(b *testing.B) {
 		lock.Lock()
 
 		defer lock.Unlock()
-	}()
+	}("1")
 
 	b.ResetTimer()
 	file, err := os.Open("/Users/lijh/test/118.6debff56405727696eee.js")
 	if err != nil {
 		fmt.Print(err)
 	}
-	data, _ := ioutil.ReadAll(file)
+	data, _ := io.ReadAll(file)
 	for i := 0; i < b.N; i++ {
 		startTime := time.Now()
 		err = bucket.PutObject("/kylinfastapptest/118.6debff56405727696eee.js", data)
@@ -84,7 +84,7 @@ func TestHttpClient(t *testing.T) {
 		return
 	}
 	defer resp.Body.Close()
-	data ,err= ioutil.ReadAll(resp.Body)
+	data, err = ioutil.ReadAll(resp.Body)
 
 	fmt.Println(string(data))
 }
